@@ -1,1 +1,1 @@
-# GoGoPlan-Travel-Planner-FullStack-App
+# GoGoPlan | Travel Planner FullStack-App
