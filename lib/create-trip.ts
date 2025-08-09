@@ -1,10 +1,13 @@
+"use server";
+
 import { auth } from "@/auth";
 import { prisma } from "./prisma";
+import { redirect } from "next/navigation";
 
 export async function createTrip(formData: FormData) {
 
     const session = await auth();
-    if(!session || !session.user){
+    if(!session || !session.user?.id){
         throw new Error("All fields are required.");
     }
   
@@ -28,6 +31,7 @@ export async function createTrip(formData: FormData) {
             endDate,
             userId: session.user.id
         },
-
     });
+
+    redirect("/trips");
 }
