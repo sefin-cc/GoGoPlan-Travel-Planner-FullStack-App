@@ -16,11 +16,14 @@ export default function NewTrip() {
             <Card>
                 <CardHeader>New Trip</CardHeader>
                 <CardContent>
-                    <form className="space-y-6" action={(formData: FormData) => {
+                    <form className="space-y-6"
+                        action={(formData: FormData) => {
+                        if (imageUrl) {
+                            formData.append("imageUrl", imageUrl);
+                        }
                         startTransition(() => {
                             createTrip(formData);
                         });
-                        
                     }}>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
@@ -85,6 +88,7 @@ export default function NewTrip() {
                                 if (res && res[0].ufsUrl) {
                                     setImageUrl(res[0].ufsUrl);
                                 }
+
                             } }
 
                             onUploadError={(error: Error) => {console.error("Upload error: ", error)}}
