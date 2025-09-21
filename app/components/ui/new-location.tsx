@@ -2,6 +2,7 @@
 
 import { useTransition } from "react";
 import { Button } from "./button";
+import { addLocation } from "@/lib/actions/add-location";
 // import { addLocation } from "@/lib/actions/add-location";
 
 export default function NewLocationClient({ tripId }: { tripId: string }) {
@@ -20,7 +21,7 @@ export default function NewLocationClient({ tripId }: { tripId: string }) {
             className="space-y-6"
             action={(formData: FormData) => {
               startTransation(() => {
-                // addLocation(formData, tripId);
+                addLocation(formData, tripId);
               });
             }}
           >

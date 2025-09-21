@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader } from "@/app/components/card";
 import { Button } from "@/app/components/ui/button";
-import { createTrip } from "@/lib/create-trip";
+import { createTrip } from "@/lib/actions/create-trip";
 import { UploadButton } from "@/lib/upload-thing";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
