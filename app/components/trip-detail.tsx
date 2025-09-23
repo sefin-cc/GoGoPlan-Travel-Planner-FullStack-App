@@ -7,9 +7,13 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useState } from "react";
-import Map from "./map";
-// import SortableItinerary from "./sortable-itinerary";
+import SortableItinerary from "./sortable-itinerary";
+import dynamic from "next/dynamic";
 
+// Dynamically import the Map component with SSR disabled
+const Map = dynamic(() => import("./map"), {
+  ssr: false,
+});
 export type TripWithLocation = Trip & {
   locations: Location[];
 };
@@ -146,8 +150,8 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
                 </Link>
               </div>
             ) : (
-            //   <SortableItinerary locations={trip.locations} tripId={trip.id} />
-            <></>
+               
+            <><SortableItinerary locations={trip.locations} tripId={trip.id} /></>
             )}
           </TabsContent>
 
