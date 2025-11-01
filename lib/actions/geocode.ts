@@ -7,20 +7,37 @@ export async function getCountryFromCoordinates(
   lat: number,
   lng: number
 ): Promise<GeocodeResult> {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY!;
-  const response = await fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
-  );
 
-  const data = await response.json();
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
 
-  const result = data.results[0];
-  const countryComponent = result.address_components.find((component: any) =>
-    component.types.includes("country")
-  );
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "Gogoplanner/1.0 rogenasefin6@gmail.com",
+      },
+    });
 
-  return {
-    country: countryComponent.long_name || "Unknown",
-    formattedAddress: result.formatted_address,
-  };
+    if (!response.ok) {
+      console.error("OpenStreetMap API error:", response.statusText);
+      return { country: "Unknown", formattedAddress: "Unknown location" };
+    }
+
+    const data = await response.json();
+
+ 
+    if (!data || !data.address) {
+      console.warn("No OpenStreetMap results found for:", lat, lng);
+      return { country: "Unknown", formattedAddress: "Unknown location" };
+    }
+
+
+    const country = data.address.country || "Unknown";
+    const formattedAddress =
+      data.display_name || data.name || "Unknown location";
+
+    return { country, formattedAddress };
+  } catch (error) {
+    console.error("Error in getCountryFromCoordinates (OpenStreetMap):", error);
+    return { country: "Unknown", formattedAddress: "Unknown location" };
+  }
 }
