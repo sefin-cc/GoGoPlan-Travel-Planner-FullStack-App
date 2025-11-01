@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Location } from "@/app/generated/prisma";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
