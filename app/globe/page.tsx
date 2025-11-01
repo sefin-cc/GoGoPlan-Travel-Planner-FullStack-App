@@ -6,7 +6,6 @@ import { MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { GlobeMethods } from "react-globe.gl";
 
-// 👇 dynamically import the globe (prevents "window is not defined")
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 export interface TransformedLocation {
