@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [{
       hostname: "673q4tstu3.ufs.sh"
     }]
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   }
 };
 

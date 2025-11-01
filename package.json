@@ -38,8 +38,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.177.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.3",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "^15.3.3",
     "prisma": "^6.4.1",
     "tailwindcss": "^4",
     "typescript": "^5"
